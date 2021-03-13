@@ -1,2 +1,7 @@
 /venv
 .idea/
+
+log.html
+output.xml
+report.html
+*.png
