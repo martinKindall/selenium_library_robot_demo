@@ -20,5 +20,5 @@ Sign up With Invalid Credentials Should Fail
     Sign up Should Have Failed
 
 Sign up Should Have Failed
-    Location Should Be    ${ERROR URL}
-    Title Should Be    Error Page
+    Location Should Be    ${LOGIN URL}
+    Wait Until Page Contains    Username or password cannot be empty
