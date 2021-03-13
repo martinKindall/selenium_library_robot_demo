@@ -39,3 +39,7 @@ Submit Credentials
 Welcome Page Should Be Open
     Location Should Be    ${WELCOME URL}
     Title Should Be    Welcome to our app
+
+Go To Login Page
+    Go To    ${LOGIN URL}
+    Login Page Should Be Open

@@ -17,17 +17,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function validateCredentials(userCredentials) {
         if (!userCredentials.username || !userCredentials.password) {
             showCredentialsCannotBeEmpty();
+            return false;
         } else {
             hideCredentialsCannotBeEmpty();
+            return true;
         }
     }
 
-    function hideCredentialsCannotBeEmpty() {
-        document.getElementById('error_msg').style.display = 'none';
+    function showCredentialsCannotBeEmpty() {
+        document.getElementById('error_msg').innerHTML = '<div class="col-sm-12"><p class="h4">Username or password cannot be empty</p></div>';
     }
 
-    function showCredentialsCannotBeEmpty() {
-        document.getElementById('error_msg').style.display = 'block';
+    function hideCredentialsCannotBeEmpty() {
+        document.getElementById('error_msg').innerHTML = '';
     }
 
     function refreshInputs() {
@@ -37,25 +39,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     document.getElementById('login-button').onclick = function(){
           const userAndPass = getUsernameAndPassword()
-          validateCredentials(userAndPass);
-
-          const storedPassword = userCredentialsStore[userAndPass.username];
-          if (!!storedPassword && storedPassword === userAndPass.password) {
-            window.location = "welcome.html";
-          } else {
-            window.location = "error.html";
+          if (validateCredentials(userAndPass)) {
+              const storedPassword = userCredentialsStore[userAndPass.username];
+              if (!!storedPassword && storedPassword === userAndPass.password) {
+                window.location = "welcome.html";
+              } else {
+                window.location = "error.html";
+              }
           }
     }
 
     document.getElementById('sign-in-button').onclick = function(){
           const userAndPass = getUsernameAndPassword()
-          validateCredentials(userAndPass);
-
-          if (!!userCredentialsStore[userAndPass.username]) {
-            window.location = "error.html";
-          } else {
-            userCredentialsStore[userAndPass.username] = userAndPass.password;
-            refreshInputs();
+          if (validateCredentials(userAndPass)) {
+              if (!!userCredentialsStore[userAndPass.username]) {
+                window.location = "error.html";
+              } else {
+                userCredentialsStore[userAndPass.username] = userAndPass.password;
+                refreshInputs();
+              }
           }
     }
 });
