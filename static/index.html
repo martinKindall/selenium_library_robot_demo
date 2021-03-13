@@ -29,12 +29,17 @@
         <div class="row my-4">
             <div class="col-sm-3"></div>
             <div class="col-sm-3">
-                <button type="button" class="btn btn-primary">Log in</button>
+                <button id="login-button" type="button" class="btn btn-primary">Login</button>
             </div>
             <div class="col-sm-3">
-                <button type="button" class="btn btn-success">Sign in</button>
+                <button id="sign-in-button" type="button" class="btn btn-success">Sign in</button>
             </div>
             <div class="col-sm-3"></div>
+        </div>
+        <div class="row my-4" id="error_msg" style="display:none;">
+            <div class="col-sm-12">
+                <p class="h4">Username or password cannot be empty</p>
+            </div>
         </div>
     </div>
     <script src="main.js"></script>
